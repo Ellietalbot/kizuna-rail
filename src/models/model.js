@@ -1,6 +1,10 @@
 import { generateConfirmationCode } from '../includes/helpers.js';
 import { getDb as db } from './db-in-file.js';
 
+export const formatOperatingMonths = (NumberedMonths) => {
+    const monthsAbv  = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    return NumberedMonths.map(num => monthsAbv[num - 1])
+}
 // ROUTE MODEL FUNCTIONS
 
 export const getAllRoutes = async () => {
