@@ -406,14 +406,75 @@ article.confirmation-page {
 }
 
 @media print {
-    article.confirmation-page {
-        .confirmation-actions {
-            display: none;
-        }
+  header,
+  footer {
+    display: none !important;
+  }
 
-        .confirmation-header {
-            background-color: white;
-            border: 2px solid var(--clr-primary);
-        }
+  article.confirmation-page {
+    margin: 0;
+
+    .confirmation-actions,
+    .next-steps,
+    .btn,
+    .detail-icon {
+      display: none;
     }
+
+    .confirmation-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: var(--space-xl);
+      align-items: center;
+      padding: var(--space-lg);
+      background-color: white;
+      border: 2px solid var(--clr-primary);
+      gap: var(--space-xs);
+
+      .success-icon {
+        display: none !important;
+      }
+
+      .confirmation-title,
+      .confirmation-message {
+        grid-column: 1;
+      }
+
+      .confirmation-title {
+        margin-bottom: var(--space-xs);
+      }
+
+      .booking-reference {
+        grid-column: 2;
+        align-self: center;
+      }
+    }
+
+    .confirmation-actions {
+      .btn {
+        display: none !important;
+      }
+    }
+  }
+
+  .booking-details {
+    .details-grid {
+      display: flex !important;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .detail-card {
+      flex: 1 1 calc(50% - var(--space-md) / 2);
+      max-width: calc(50% - var(--space-md) / 2);
+    }
+  }
+
+  .passengers-info {
+    .section-title,
+    .passengers-list {
+      display: none !important;
+    }
+  }
 }

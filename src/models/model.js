@@ -1,4 +1,4 @@
-import { generateConfirmationCode } from '../includes/helpers.js';
+import { generateConfirmationCode, yenToUsd } from '../includes/helpers.js';
 import { getDb as db } from './db-in-file.js';
 
 export const formatOperatingMonths = (NumberedMonths) => {
@@ -163,7 +163,7 @@ export const calculateTicketPrice = async (routeId, className) => {
 
     if (!route || !ticketClass) return null;
 
-    return route.distance * ticketClass.pricePerKm;
+    return yenToUsd(route.distance * ticketClass.pricePerKm);
 };
 
 export const getTicketOptionsForRoute = async (routeId) => {
@@ -173,7 +173,7 @@ export const getTicketOptionsForRoute = async (routeId) => {
     return db().ticketClasses.map(tc => ({
         class: tc.class,
         name: tc.name,
-        price: route.distance * tc.pricePerKm,
+        price: yenToUsd(route.distance * tc.pricePerKm),
         amenities: tc.amenities,
         description: tc.description
     }));
